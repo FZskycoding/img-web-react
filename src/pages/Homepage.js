@@ -39,7 +39,7 @@ const Homepage = () => {
 
   useEffect(() => {
     search(initialURL);
-  }, []);
+  }, []); //只在頁面載入時取得初始圖片
 
   return (
     <div style={{ minHeight: "100vh" }}>

@@ -4,11 +4,16 @@ const Search = ({ search, setInput }) => {
   const inputHandler = (e) => {
     setInput(e.target.value);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    search();
+  };
   return (
-    <div className="search">
+    <form onSubmit={handleSubmit} className="search">
       <input className="input" onChange={inputHandler} type="text" />
-      <button onClick={search}>Search</button>
-    </div>
+      <button type="submit">Search</button>
+    </form>
   );
 };
 
