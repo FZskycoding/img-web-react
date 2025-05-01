@@ -16,9 +16,3 @@
 - **React Router** - 路由管理
 - **Axios** - API 請求
 - **SCSS** - 樣式管理
-
-## 我學到甚麼?
-- React 基礎概念
-- 使用useState狀態管理
-- React Router 的使用
-- 利用Blob物件完成圖片下載功能
