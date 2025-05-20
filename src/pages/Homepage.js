@@ -13,7 +13,8 @@ const Homepage = () => {
   let searchURL = `https://api.pexels.com/v1/search?query=${input}&per_page=15&page=1`;
 
   const search = async (url) => {
-    let result = await axios.get(url, {
+    const urlToUse = input.trim() ===""? initialURL : url;
+    let result = await axios.get(urlToUse, {
       headers: { Authorization: auth },
     });
     setData(result.data.photos);
