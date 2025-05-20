@@ -24,6 +24,11 @@ const Picture = ({ data }) => {
     }
   };
 
+  const getImageFilename = () => {
+    // 產生檔案名稱：photographer-id.jpg
+    return `${data.photographer.toLowerCase().replace(/\s+/g, '-')}.jpg`;
+  };
+
   return (
     <div className="picture">
       <p>{data.photographer}</p>
@@ -33,7 +38,7 @@ const Picture = ({ data }) => {
       <p>
         在此下載圖片：
         <button
-          onClick={() => downloadImage(data.src.large, "pexels-image.jpg")}
+          onClick={() => downloadImage(data.src.large, getImageFilename())}
         >
           按一下
         </button>
