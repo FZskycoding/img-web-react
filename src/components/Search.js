@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Search = ({ search, setInput }) => {
+const Search = ({ search, setInput, input }) => {
   const inputHandler = (e) => {
     setInput(e.target.value);
   };
@@ -11,7 +11,7 @@ const Search = ({ search, setInput }) => {
   };
   return (
     <form onSubmit={handleSubmit} className="search">
-      <input className="input" onChange={inputHandler} type="text" />
+      <input className="input" onChange={inputHandler} type="text" value={input} />
       <button type="submit">Search</button>
     </form>
   );

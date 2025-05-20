@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Search from "../components/Search";
 import Picture from "../components/Picture";
 import axios from "axios";
 
 const Homepage = () => {
+  const location = useLocation();
   let [input, setInput] = useState("");
   let [data, setData] = useState(null);
   let [page, setPage] = useState(1);
@@ -13,7 +15,7 @@ const Homepage = () => {
   let searchURL = `https://api.pexels.com/v1/search?query=${input}&per_page=15&page=1`;
 
   const search = async (url) => {
-    const urlToUse = input.trim() ===""? initialURL : url;
+    const urlToUse = input.trim() === "" ? initialURL : url;
     let result = await axios.get(urlToUse, {
       headers: { Authorization: auth },
     });
@@ -35,12 +37,15 @@ const Homepage = () => {
     let result = await axios.get(newURL, {
       headers: { Authorization: auth },
     });
-    setData(data.concat(result.data.photos)); //concat功能是合併陣列(原本的data合併新的data)
+    setData(data.concat(result.data.photos));
   };
 
   useEffect(() => {
+    setInput("");
+    setcurrentSearch("");
+    setPage(1);
     search(initialURL);
-  }, []); //只在頁面載入時取得初始圖片
+  }, [location]); // 當路由變化時重設狀態
 
   return (
     <div style={{ minHeight: "100vh" }}>
@@ -49,6 +54,7 @@ const Homepage = () => {
           search(searchURL);
         }}
         setInput={setInput}
+        input={input}
       />
       <div className="pictures">
         {data &&
